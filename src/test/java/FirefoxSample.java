@@ -16,7 +16,7 @@ import java.net.URL;
  */
 public class FirefoxSample {
     @Test
-    public void simpleRunInLocalBrowser()  {
+    public void simpleRunInLocalBrowser() {
         WebDriver driver = new FirefoxDriver();
         driver.get("http://selenium2.ru/");
         driver.quit();
@@ -24,8 +24,8 @@ public class FirefoxSample {
 
 
     @Test
-    public void testRemotelyOnLocalHost()  {
-        WebDriver driver = new RemoteWebDriver(DesiredCapabilities.firefox( ));
+    public void testRemotelyOnLocalHost() {
+        WebDriver driver = new RemoteWebDriver(DesiredCapabilities.firefox());
         driver.get("http://selenium2.ru/");
         driver.quit();
     }
@@ -38,6 +38,7 @@ public class FirefoxSample {
         driver.get("http://selenium2.ru/");
         driver.quit();
     }
+
     @Test
     public void testRemotelyOnRemoteHostinCloud() throws MalformedURLException {
         WebDriver driver = new RemoteWebDriver(
@@ -63,6 +64,19 @@ public class FirefoxSample {
         driver.get("http://selenium2.ru/");
         driver.quit();
     }
+
+    @Test
+    public void runWithCustomEnvironment() {
+        FirefoxBinary binary = new FirefoxBinary();
+        binary.setEnvironmentProperty("DISPLAY", ":2");
+
+        FirefoxProfile profile = new FirefoxProfile();
+
+        FirefoxDriver driver = new FirefoxDriver(binary, profile);
+        driver.get("http://selenium2.ru/");
+        driver.quit();
+    }
+
     @Test
     public void runWithLongerTimeout() {
         FirefoxBinary binary = new FirefoxBinary();
@@ -74,6 +88,7 @@ public class FirefoxSample {
         driver.get("http://selenium2.ru/");
         driver.quit();
     }
+
     @Test
     public void runWithCustomProfile() {
         FirefoxProfile profile = new FirefoxProfile();
@@ -90,6 +105,7 @@ public class FirefoxSample {
         System.out.println(driver.getTitle());
         driver.quit();
     }
+
     @Test
     public void runWithExtensions() throws IOException {
         FirefoxProfile profile = new FirefoxProfile();
@@ -103,6 +119,7 @@ public class FirefoxSample {
         driver.get("http://selenium2.ru/");
         //driver.quit();
     }
+
     @Test
     public void runWithExistingProfile() {
         FirefoxProfile profile = new FirefoxProfile(
@@ -113,4 +130,19 @@ public class FirefoxSample {
         driver.quit();
     }
 
+    @Test
+    public void runWithSynthesizedEvents() throws Exception {
+        FirefoxProfile profile = new FirefoxProfile();
+
+        // profile.setEnableNativeEvents(true); // default for Windows
+        profile.setEnableNativeEvents(false); // default for Linux
+
+        DesiredCapabilities caps = new DesiredCapabilities();
+        caps.setCapability("nativeEvents", true);
+
+        FirefoxDriver driver = new FirefoxDriver(caps);
+        driver.get("http://selenium2.ru");
+        System.out.println(driver.getCapabilities());
+        driver.quit();
+    }
 }
