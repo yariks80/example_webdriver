@@ -4,11 +4,14 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.opera.OperaDriver;
 
+import java.io.File;
+import java.net.MalformedURLException;
+
 /**
  * Created by my on 24.05.2015.
  */
 public class OperaSample {
-
+// c 15 версии
     @Test
     public void simpleRun0() {
         System.setProperty("webdriver.opera.driver", "Libdrivers\\operadriver32.exe");
@@ -22,15 +25,16 @@ public class OperaSample {
         /*
         * Увы, несмотря на то, что браузер запускается -- драйвер не может им управлять, инициализация завершается с исключением...
 
-Причина, вероятно, в том, что с некоторых пор в chromedriver добавлена функция контроля версий -- драйвер отказывается работать с любыми версиями браузера, кроме "официально поддерживаемых". В том числе под раздачу попали Opera, Yandex-браузер и прочие надстройки над Chromium -- драйвер отвергает их как несовместимые.
+         Причина, вероятно, в том, что с некоторых пор в chromedriver добавлена функция контроля версий -- драйвер отказывается работать с любыми версиями браузера, кроме "официально поддерживаемых". В том числе под раздачу попали Opera, Yandex-браузер и прочие надстройки над Chromium -- драйвер отвергает их как несовместимые.
 
-К счастью, разработчики Opera выпустили альтернативную версию этой вспомогательной утилиты, которая называется, как несложно догадаться, operadriver.*/
+         К счастью, разработчики Opera выпустили альтернативную версию этой вспомогательной утилиты, которая называется, как несложно догадаться, operadriver.*/
         ChromeOptions options = new ChromeOptions();
         options.setBinary("c:\\Program Files (x86)\\Opera\\29.0.1795.60\\opera.exe");
         ChromeDriver driver = new ChromeDriver(options);
         driver.get("http://selenium2.ru/");
         driver.quit();
     }
+
 
 
 }

@@ -30,7 +30,7 @@ public class InternetExplorerSample {
         driver.quit();
     }
 
-    @Test
+   /* @Test
     public void runCustomized() {
         InternetExplorerDriverService service = new InternetExplorerDriverService.Builder()
                 .usingDriverExecutable(new File("C:/Tools/IEDriverServer.exe"))
@@ -44,5 +44,5 @@ public class InternetExplorerSample {
 
         driver.get("http://selenium2.ru/");
         driver.quit();
-    }
+    }*/
 }
